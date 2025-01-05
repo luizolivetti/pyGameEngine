@@ -28,28 +28,7 @@
 -------------------------------------------------------------
 Files struct
 -------------------------------------------------------------
-game/
-├── pyGameEngine/
-│    ├── core/
-│    │   ├── __init__.py
-│    │   ├── extends
-│    │   ├── game.py
-│    │   ├── scene.py
-│    │   └── entity.py
-│    ├── components/
-│    │   ├── __init__.py
-│    │   ├── extends
-│    │   ├── renderer.py
-│    │   ├── physics.py
-│    │   └── input.py
-│    └── assets/
-│        ├── images/
-│        ├── sounds/
-│        └── fonts/
-├── scenes
-├── settings.py
-├── main.py
-└── README.md
+tree
 
 
 Contact
