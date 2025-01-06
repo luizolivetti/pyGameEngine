@@ -7,6 +7,8 @@
 #  ----------------------------------------------------------
 #
 # https://www.freepik.com/free-photos-vectors/cartoon-kitchen
+# https://pngtree.com/freepng/monster-game-assets-ui-kit_3712767.html <-- personagens
+# https://pngtree.com/so/monster-game-assets-ui-kit
 #
 # Engine
 #
@@ -22,11 +24,11 @@ from pyGameEngine.core.extends.entity.player import player
 stage1 = stage(game.BLACK)
 
 # backgroundImage
-backgroundImage = layer(0,0,'pyGameEngine/assets/images/backgrounds/kitchen.jpg', 4.5)
+backgroundImage = layer(0,0,'Game/pyGameEngine/assets/images/backgrounds/kitchen.jpg', 4.5)
 stage1.addEntity(backgroundImage)
 
 # creating player 1
-player1 = player(0, 100, "pyGameEngine/assets/images/player/1.png", 8)
+player1 = player(0, 100, "Game/pyGameEngine/assets/images/player/1.png", 8)
 # add player 1 at the scene
 stage1.addEntity(player1)
 # mount commands for player 1
@@ -38,7 +40,7 @@ up = stage1.keyboard.w # up
 stage1.registerInputs(player1, left, right, up, down)
 
 # creating player 2
-player2 = player(0, 200, "pyGameEngine/assets/images/player/2.png", 8)
+player2 = player(0, 200, "Game/pyGameEngine/assets/images/player/2.png", 8)
 # add player 1 at the scene
 stage1.addEntity(player2)
 # mount commands for player 1
@@ -50,7 +52,7 @@ up = stage1.keyboard.UP # up
 stage1.registerInputs(player2, left, right, up, down)
 
 # creating player 3
-player3 = player(0, 300, "pyGameEngine/assets/images/player/3.png", 8)
+player3 = player(0, 300, "Game/pyGameEngine/assets/images/player/3.png", 8)
 # add player 1 at the scene
 stage1.addEntity(player3)
 # mount commands for player 1
@@ -62,7 +64,7 @@ up = stage1.keyboard.u # up
 stage1.registerInputs(player3, left, right, up, down)
 
 # creating player 4
-player4 = player(0, 400, "pyGameEngine/assets/images/player/4.png", 8)
+player4 = player(0, 400, "Game/pyGameEngine/assets/images/player/4.png", 8)
 # add player 1 at the scene
 stage1.addEntity(player4)
 # mount commands for player 1

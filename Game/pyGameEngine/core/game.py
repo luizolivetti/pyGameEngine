@@ -23,6 +23,7 @@ class game(settings):
     scene = None
     scenes = {}
     currentState = None
+    firstState = None
     countScenes = 0
     #
     # Initialization
@@ -49,7 +50,7 @@ class game(settings):
     # getScene
     #
     def getScene(self, state):
-            self.scenes[state]              
+            self.scenes[state]    
     #
     # setScene
     #
@@ -58,6 +59,14 @@ class game(settings):
             self.currentState = self.scenes[state]
         else:
             print(f"Cena não encontrada para o estado '{state}'.")
+    #
+    # executeScene
+    # 
+    def executeScene(self):  
+        if self.currentState:
+            self.screen.setWindowBackground(self.currentState.background)
+            self.currentState.update()
+            self.currentState.render(self.screen.getWindowHandler())                  
     #
     # Loop
     #
@@ -70,10 +79,7 @@ class game(settings):
                 if self.scene:
                     self.scene.handleEvent(event)
 
-            if self.currentState:
-                self.screen.setWindowBackground(self.currentState.background)
-                self.currentState.update()
-                self.currentState.render(self.screen.getWindowHandler())
+            self.executeScene()
 
             pygame.display.flip()
             self.clock.tick(60)

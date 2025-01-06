@@ -25,11 +25,9 @@ class stage(scene):
         self.keyboard = keyboard()
     #
     # registerInputs
+    # Vincula os inputs aos jogadores ou outras entidades da cena.
     #   
     def registerInputs(self, entity, left, right, up, down):
-        """
-        Vincula os inputs aos jogadores ou outras entidades da cena.
-        """
         self.setupPlayerInput(entity, {
             left: lambda: entity.move(-5, 0),
             right: lambda: entity.move(5, 0),
@@ -38,13 +36,11 @@ class stage(scene):
         })        
     #
     # setupPlayerInput
+    # Configura o input para uma entidade com base em um dicionário de teclas e ações.
+    # :param player: Entidade que terá o input configurado.
+    # :param key_mapping: Dicionário de mapeamento {tecla: ação}.
     #  
     def setupPlayerInput(self, player, key_mapping):
-        """
-        Configura o input para uma entidade com base em um dicionário de teclas e ações.
-        :param player: Entidade que terá o input configurado.
-        :param key_mapping: Dicionário de mapeamento {tecla: ação}.
-        """
         for key, action in key_mapping.items():
             self.input.bindKey(key, action)
     #

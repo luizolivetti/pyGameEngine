@@ -17,17 +17,19 @@ from pyGameEngine.core.screen import screen
 #
 # scene
 #
-class scene(screen, sound, settings):
+class scene(screen, settings):
     #
-    # 
+    # properties
     #
+    snd = None
+    ways = None
     background = (0,0,0)
     backgroundImage =''
     #
     # __init__
     #
     def __init__(self, background):
-        sound.__init__(self)
+        self.sounds = []
         self.entities = []
         self.background = background
     #
@@ -36,31 +38,66 @@ class scene(screen, sound, settings):
     def addEntity(self, entity):
         self.entities.append(entity)
     #
+    # addSound
+    #
+    def addSound(self, name, file, loop, volume):
+        self.sounds.append({'name': name, 'file': file, 'loop': loop, 'volume': volume})   
+    #
+    # startSound
+    #
+    def startSound(self):
+        if self.snd is None:
+            self.snd = sound()
+    #
+    # loadSound
+    #
+    def loadSounds(self):
+        self.startSound()
+        for sound in self.sounds:
+            if sound['name'] not in self.snd.sounds:
+                self.snd.load(sound['name'], sound['file'])           
+    #
+    # playSounds
+    #
+    def playSounds(self):
+        # handleEvent de sons
+        if len(self.sounds)>0:
+            for sound in self.sounds:
+                self.snd.play(sound['name'], sound['loop'])
+                self.snd.volume(sound['name'], sound['volume'])                
+    #
     # handle_event
     #
     def handleEvent(self, event):
+        # inicia sons se não tiver iniciado
+        self.startSound()
+        # handleEvent de entidades
         for entity in self.entities:
             entity.handleEvent(event)
     #
     # handleEvents
     #
     def handleEvents(self, events):
+        # inicia sons se não tiver iniciado
+        self.startSound()
+        # handleEvents de entidades
         for entity in self.entities:
-            entity.handleEvents(events)            
+            entity.handleEvents(events)   
     #
     # update
     #
-    def update(self):
+    def update(self): 
+        # update de entidades
         for entity in self.entities:
             entity.update()
     #
     # render
     #
     def render(self, screen):
+        # carrega sons não carregados
+        # inicia sons não iniciados
+        self.loadSounds()
+        self.playSounds()
+        # render de entidades            
         for entity in self.entities:
-            entity.render(screen)
-    #
-    # addSound
-    #
-    def addSound(self, name, file):
-        self.load(name, file)    
+            entity.render(screen) 

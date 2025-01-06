@@ -10,7 +10,6 @@
 #
 from pyGameEngine.core.timer import timer
 from pyGameEngine.core.window import window
-from pyGameEngine.core.extends.scene.map import map
 #
 # Class screen
 #
@@ -55,5 +54,5 @@ class screen :
     #
     # mapRender
     #
-    def mapRender(self, windowHandler):
-        map.render(windowHandler)
+    #def mapRender(self, windowHandler):
+    #    map.render(windowHandler)

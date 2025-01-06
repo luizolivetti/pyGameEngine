@@ -19,35 +19,26 @@ from pyGameEngine.core.game import game
 from pyGameEngine.core.extends.scene.menu import menu
 from pyGameEngine.core.extends.entity.label import label
 from pyGameEngine.core.extends.entity.layer import layer
-from pyGameEngine.core.extends.entity.option import option
+from pyGameEngine.core.extends.entity.options import options
 #
 # mainMenu
 #
-mainMenu = menu(game.BLACK, game.WHITE, game.RED)
-
+mainMenu = menu(game.BLACK)
 # imagens
-backgroundImage = layer(0,150,'pyGameEngine/assets/images/backgrounds/opening.jpg',10)
+backgroundImage = layer(0,150,'Game/pyGameEngine/assets/images/backgrounds/opening.jpg',10)
 mainMenu.addEntity(backgroundImage)
-
 # textos 
-title = label(20, 0, 'Little Monsters', game.RED, 'pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 80)
+title = label(20, 0, 'Little Monsters', game.RED, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 80)
 mainMenu.addEntity(title)
-subtitle = label(20, 100, 'beyond under the bed', game.WHITE, 'pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 30)
+subtitle = label(20, 100, 'beyond under the bed', game.WHITE, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 40)
 mainMenu.addEntity(subtitle)
 copyright = label(200, 550, 'Copyright(c)OER Tecnologia - Poweredge by PyGameEngine', game.WHITE, None, 20)
 mainMenu.addEntity(copyright)
-
 # opcoes
-option1 = option(340, 300, "Start", game.WHITE)
-mainMenu.addEntity(option1)
-option2 = option(340, 325, "Options", game.WHITE)
-mainMenu.addEntity(option2)
-
+mainOptions = options(320,300) 
+mainOptions.addItem("Start", None)
+mainOptions.addItem("Options", None)
+mainMenu.addEntity(mainOptions)
 # sons 
-mainMenu.addSound('Opening', 'pyGameEngine/assets/sounds/opening.mp3')
-mainMenu.play('Opening',-1)
-mainMenu.volume('Opening', 0.5)
-
-mainMenu.addSound('Doors', 'pyGameEngine/assets/sounds/doors.mp3')
-mainMenu.play('Doors',-1)
-mainMenu.volume('Doors', 0.8)
+mainMenu.addSound('Opening', 'Game/pyGameEngine/assets/sounds/opening.mp3', -1, 0.5)
+mainMenu.addSound('Doors', 'Game/pyGameEngine/assets/sounds/doors.mp3', -1, 0.8)

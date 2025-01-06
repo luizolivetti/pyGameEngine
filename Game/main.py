@@ -19,7 +19,6 @@
 # ASCII Art
 # https://www.asciiart.eu/space/aliens
 # ---------------------------------------------------------------------------------------------------------
-# https://pngtree.com/freepng/monster-game-assets-ui-kit_3712767.html <-- personagens
 #
 # Engine
 #
@@ -39,9 +38,9 @@ Game.addScene('mainmenu', mainMenu)
 Game.addScene('optionsmenu', optionsMenu)
 Game.addScene('stage1', stage1)
 # inicializando o estado inicial
-Game.setScene('stage1')
+Game.setScene('mainmenu')
 # TO-DO : 
-#     1. Ao addScene não executar todo seu contexto
+#     1. Ao addScene não executar todo seu contexto - OK
 #     2. Melhorar a concepção de menu. Atualmente option é uma entity na scene
 #        e as seleção dos itens e os eventos de escolha não estão adequados
 #     3. Criar modo de navegação nos "states" de modo a mudar a cena de acordo 
@@ -49,5 +48,6 @@ Game.setScene('stage1')
 #     4. Melhorar adesão de layers para que sejam ajustadas as telas
 #     5. Melhorar enquadramento para que a tela possa "correr" para os lados 
 #        quando background for maior que o enquadramento
+#
 # executando
 Game.run()
