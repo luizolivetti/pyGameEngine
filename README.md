@@ -31,10 +31,9 @@ Under construction
 
 ## ✒️ Author
 
-* **Um desenvolvedor** - *Trabalho Inicial* - [umdesenvolvedor](https://github.com/linkParaPerfil)
-* **Fulano De Tal** - *Documentação* - [fulanodetal](https://github.com/linkParaPerfil)
-
-Você também pode ver a lista de todos os [colaboradores](https://github.com/usuario/projeto/colaboradores) que participaram deste projeto.
+<a href="https://github.com/luizolivetti/pyGameEngine">
+  <img src="https://contributors-img.web.app/image?repo=luizolivetti/pyGameEngine&max=500" alt="Lista de contribuidores" width="100%"/>
+</a>
 
 ## 📄 Licença
 
