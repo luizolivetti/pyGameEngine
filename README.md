@@ -32,7 +32,7 @@ Under construction
 ## ✒️ Author
 
 <a href="https://github.com/luizolivetti/pyGameEngine">
-  <img src="https://contributors-img.web.app/image?repo=luizolivetti/pyGameEngine&max=500" alt="Lista de contribuidores" width="100%"/>
+  <img src="https://contributors-img.web.app/image?repo=luizolivetti/pyGameEngine&max=500" alt="Lista de contribuidores"/>
 </a>
 
 ## 📄 Licença
