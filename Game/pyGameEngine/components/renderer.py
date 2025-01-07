@@ -11,11 +11,6 @@ import pygame
 #
 class renderer:
     #
-    # properties
-    #
-    x=0
-    y=0
-    #
     # initialization
     #
     def __init__(self, x, y):

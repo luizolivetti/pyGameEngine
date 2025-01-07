@@ -3,7 +3,7 @@
 #  First stage of the game
 #  ----------------------------------------------------------
 #  @author  Luiz Olivetti     @data 20/12/2024
-#  @revisor                   @data 
+#  @revisor Luiz Olivetti     @data 06/01/2025
 #  ----------------------------------------------------------
 #
 # https://www.freepik.com/free-photos-vectors/cartoon-kitchen
@@ -19,7 +19,9 @@ from pyGameEngine.core.game import game
 from pyGameEngine.core.extends.scene.stage import stage
 from pyGameEngine.core.extends.entity.layer import layer
 from pyGameEngine.core.extends.entity.player import player
-
+#
+# stage1
+#
 # Scene object
 stage1 = stage(game.BLACK)
 

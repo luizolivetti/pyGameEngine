@@ -15,12 +15,6 @@ from pyGameEngine.components.renderer import renderer
 #
 class image(renderer):
     #
-    # properties
-    #
-    imageWidth=0
-    imageHeight=0
-    rect=0
-    #
     # initialization
     #
     def __init__(self, x, y, image_path):

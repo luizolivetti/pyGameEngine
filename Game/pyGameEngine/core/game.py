@@ -36,8 +36,6 @@ class game(settings):
         self.screen.setWindowCaption(settings.TITLE)
         self.screen.setWindowBackground(color)
         self.screen.setTimer()
-        # states
-        self.currentState = None
         # to-do it better
         self.clock = pygame.time.Clock()
     #
@@ -63,7 +61,7 @@ class game(settings):
     # executeScene
     # 
     def executeScene(self):  
-        if self.currentState:
+        if self.currentState is not None:
             self.screen.setWindowBackground(self.currentState.background)
             self.currentState.update()
             self.currentState.render(self.screen.getWindowHandler())                  
@@ -90,9 +88,8 @@ class game(settings):
     #
     def update(self):
         pygame.display.update() 
-        if self.currentState:
+        if self.currentState is not None:
            self.currentState.update()
-              
     #
     # quit
     #
@@ -102,11 +99,11 @@ class game(settings):
     # handle_events
     #
     def handleEvents(self, events):
-        if self.currentState:
+        if self.currentState is not None:
            self.currentState.handleEvents(events)
     #
     # render
     #
     def render(self, screen):
-        if self.currentState:
+        if self.currentState is not None:
            self.currentState.render(screen)        

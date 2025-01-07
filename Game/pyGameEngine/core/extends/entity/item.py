@@ -12,15 +12,6 @@ from pyGameEngine.components.extends.renderer.text import text
 #
 class item(entity):
     #
-    # properties
-    #
-    x = 0
-    y = 0
-    textItem = ''
-    textColor = (255,255,255)
-    textFont = None
-    textSize = 25
-    #
     # __init__
     #     
     def __init__(self, x, y, textItem, action, textColor=(255,255,255), textFont=None, textSize=25):

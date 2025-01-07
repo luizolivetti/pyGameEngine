@@ -15,17 +15,6 @@ from pyGameEngine.components.renderer import renderer
 #
 class text(renderer):
     #
-    # properties
-    #
-    textObject=None
-    textValue=0
-    textColor=0
-    textFont=0
-    textSize=0
-    textX=0
-    textY=0
-    position=0
-    #
     # initialization
     #
     def __init__(self, x, y, textValue, textColor=(255,255,255), textFont=None, textSize=25):

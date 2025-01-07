@@ -1,24 +1,10 @@
-# 
-# Main File
-# 
-# Created by: Luiz Olivetti
-# Created at: 2024-12-20
-# 
-# Examples | References
-# --------------------------------------------------------------------------------------------------------
-# Get isometric tile mouse selection in Pygame
-# https://stackoverflow.com/questions/71336864/get-isometric-tile-mouse-selection-python/73996398#73996398
-# 
-# Draw a staggered isometric map with python
-# https://stackoverflow.com/questions/66568267/draw-a-staggered-isometric-map-with-python/66569330#66569330
-#
-# GitHub - PyGameExamplesAndAnswers - Isometric
-# https://github.com/Rabbid76/PyGameExamplesAndAnswers/blob/master/documentation/pygame/pygame_isometric.md
-# https://replit.com/@Rabbid76/Pygame-IsometircMap#main.py
-#
-# ASCII Art
-# https://www.asciiart.eu/space/aliens
-# ---------------------------------------------------------------------------------------------------------
+#  ----------------------------------------------------------
+#  MAIN
+#  Main program
+#  ----------------------------------------------------------
+#  @author  Luiz Olivetti     @data 20/12/2024
+#  @revisor Luiz Olivetti     @data 06/01/2025
+#  ----------------------------------------------------------
 #
 # Engine
 #
@@ -27,8 +13,8 @@ from pyGameEngine.core.game import game
 # Custom scenes
 #
 from scenes.stage1 import stage1
-from scenes.mainmenu import mainMenu
-from scenes.options import optionsMenu
+from scenes.mainMenu import mainMenu
+from scenes.optionsMenu import optionsMenu
 #
 # Main program
 #
@@ -38,7 +24,7 @@ Game.addScene('mainmenu', mainMenu)
 Game.addScene('optionsmenu', optionsMenu)
 Game.addScene('stage1', stage1)
 # inicializando o estado inicial
-Game.setScene('mainmenu')
+Game.setScene('stage1')
 # TO-DO : 
 #     1. Ao addScene não executar todo seu contexto - OK
 #     2. Melhorar a concepção de menu. Atualmente option é uma entity na scene

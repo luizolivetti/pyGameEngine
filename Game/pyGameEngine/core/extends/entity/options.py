@@ -12,21 +12,16 @@ from pyGameEngine.core.extends.entity.item import item
 #
 class options(entity):
     #
-    # properties
-    #
-    x = 0
-    y = 0
-    currentItem = 0
-    items = []
-    #
     # __init__
     #     
     def __init__(self, x, y):
         super().__init__(x, y)
         self.x = x
         self.y = y
+        self.currentItem = 0
+        self.items = []        
     #
-    # addItem
+    # addItem 
     #
     def addItem(self, textItem, action, textColor=(255, 255,255), textFont=None, textSize=25):
         self.items.append(item(self.x, (self.y+(20*len(self.items))), textItem, action, textColor, textFont, textSize))

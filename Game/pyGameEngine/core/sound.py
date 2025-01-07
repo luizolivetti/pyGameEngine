@@ -9,10 +9,8 @@
 #  https://pixabay.com/pt/music/search/genre/m%C3%BAsicas%20infantis%20assustadoras/
 import pygame
 #
-# Class screen
+# sound
 #
-import pygame
-
 class sound:
     #
     # __init__

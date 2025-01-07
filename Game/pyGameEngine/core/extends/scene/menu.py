@@ -14,20 +14,16 @@ from pyGameEngine.core.scene import scene
 # componentes
 #
 from pyGameEngine.components.input import input
-from pyGameEngine.core.extends.entity.options import options
 #
 # menu
 #
 class menu(scene):
     #
-    # properties
-    #
-    itemIndex = 0
-    #
     # __init__
     #
     def __init__(self, color):
         super().__init__(color)
+        self.itemIndex = 0
         # Inicializa o input
         self.input = input()  
         # Registra os inputs inicialmente

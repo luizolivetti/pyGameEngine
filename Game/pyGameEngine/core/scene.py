@@ -19,19 +19,15 @@ from pyGameEngine.core.screen import screen
 #
 class scene(screen, settings):
     #
-    # properties
-    #
-    snd = None
-    ways = None
-    background = (0,0,0)
-    backgroundImage =''
-    #
     # __init__
     #
     def __init__(self, background):
+        self.background = background
+        self.snd = None
+        self.ways = None
+        self.backgroundImage =''
         self.sounds = []
         self.entities = []
-        self.background = background
     #
     # addEntity
     #

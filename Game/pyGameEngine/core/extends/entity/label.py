@@ -12,15 +12,6 @@ from pyGameEngine.components.extends.renderer.text import text
 #
 class label(entity):
     #
-    # properties
-    #
-    x = 0
-    y = 0
-    textOption = ''
-    textColor = (255,255,255)
-    textFont = None
-    textSize = 25
-    #
     # __init__
     #     
     def __init__(self, x, y, textOption, textColor=(255,255,255), textFont=None, textSize=25):

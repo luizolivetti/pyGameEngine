@@ -3,7 +3,7 @@
 #  First menu of the game
 #  ----------------------------------------------------------
 #  @author  Luiz Olivetti     @data 20/12/2024
-#  @revisor                   @data 
+#  @revisor Luiz Olivetti     @data 06/01/2025
 #  ----------------------------------------------------------
 #
 # settings
@@ -40,5 +40,5 @@ mainOptions.addItem("Start", None)
 mainOptions.addItem("Options", None)
 mainMenu.addEntity(mainOptions)
 # sons 
-mainMenu.addSound('Opening', 'Game/pyGameEngine/assets/sounds/opening.mp3', -1, 0.5)
-mainMenu.addSound('Doors', 'Game/pyGameEngine/assets/sounds/doors.mp3', -1, 0.8)
+mainMenu.addSound('Opening', 'Game/pyGameEngine/assets/sounds/opening.mp3', -1, 0.2)
+mainMenu.addSound('Doors', 'Game/pyGameEngine/assets/sounds/doors.mp3', -1, 0.2)

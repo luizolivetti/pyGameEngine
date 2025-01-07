@@ -3,7 +3,7 @@
 #  First menu of the game
 #  ----------------------------------------------------------
 #  @author  Luiz Olivetti     @data 20/12/2024
-#  @revisor                   @data 
+#  @revisor Luiz Olivetti     @data 06/01/2025
 #  ----------------------------------------------------------
 #
 # settings
@@ -21,7 +21,7 @@ from pyGameEngine.core.extends.entity.label import label
 from pyGameEngine.core.extends.entity.layer import layer
 from pyGameEngine.core.extends.entity.options import options
 #
-# mainMenu
+# optionsMenu
 #
 optionsMenu = menu(game.BLACK)
 # imagens
