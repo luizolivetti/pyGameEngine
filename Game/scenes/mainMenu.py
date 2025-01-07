@@ -36,7 +36,7 @@ copyright = label(200, 550, 'Copyright(c)OER Tecnologia - Poweredge by PyGameEng
 mainMenu.addEntity(copyright)
 # opcoes
 mainOptions = options(320,300) 
-mainOptions.addItem("Start", None)
+mainOptions.addItem("Start", 'stage1')
 mainOptions.addItem("Options", None)
 mainMenu.addEntity(mainOptions)
 # sons 
