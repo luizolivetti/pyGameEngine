@@ -10,37 +10,45 @@
 #
 from settings import settings
 #
-# Engine
+# core
 #
-from pyGameEngine.core.game import game
+from pyGameEngine.core.scene import scene
 #
-# Extends
+# extends
 #
-from pyGameEngine.core.extends.scene.menu import menu
 from pyGameEngine.core.extends.entity.label import label
 from pyGameEngine.core.extends.entity.layer import layer
 from pyGameEngine.core.extends.entity.options import options
 #
 # optionsMenu
 #
-optionsMenu = menu(game.BLACK)
-# imagens
-backgroundImage = layer(0,150,'Game/pyGameEngine/assets/images/backgrounds/opening.jpg',10)
-optionsMenu.addEntity(backgroundImage)
-# textos 
-title = label(20, 0, 'Little Monsters', game.RED, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 80)
-optionsMenu.addEntity(title)
-subtitle = label(20, 100, 'beyond under the bed', game.WHITE, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 30)
-optionsMenu.addEntity(subtitle)
-copyright = label(200, 550, 'Copyright(c)OER Tecnologia - Poweredge by PyGameEngine', game.WHITE, None, 20)
-optionsMenu.addEntity(copyright)
-# opcoes
-configurations = options(320, 300) 
-configurations.addItem("Volume do audio", None)
-configurations.addItem("Volume dos efeitos", None)
-configurations.addItem("Volume dos dialogos", None)
-configurations.addItem("Configuração do teclado", None)
-configurations.addItem("Voltar", None)
-optionsMenu.addEntity(configurations)
-# sons
-optionsMenu.addSound('Doors', 'Game/pyGameEngine/assets/sounds/doors.mp3', -1, 0.8)
+def optionsMenu(game):
+    optionsMenu = scene(game.BLACK, game, False)
+    # imagens
+    backgroundImage = layer(0,150,'Game/pyGameEngine/assets/images/backgrounds/opening.jpg',10)
+    optionsMenu.addEntity(backgroundImage)
+    # textos 
+    title = label(20, 0, 'Little Monsters', game.RED, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 80)
+    subtitle = label(20, 100, 'beyond under the bed', game.WHITE, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 40)
+    copyright = label(200, 550, 'Copyright(c)OER Tecnologia - Poweredge by PyGameEngine', game.WHITE, None, 20)
+    optionsMenu.addEntity(subtitle)
+    optionsMenu.addEntity(title)
+    optionsMenu.addEntity(copyright)
+    # opcoes
+    configurations = options(300, 300) 
+    configurations.addItem("Volume do audio", None)
+    configurations.addItem("Volume dos efeitos", None)
+    configurations.addItem("Volume dos dialogos", None)
+    configurations.addItem("Configuração do teclado", None)
+    configurations.addItem("Voltar", 'mainmenu')
+    configurations.selected(0)
+    optionsMenu.addEntity(configurations)
+    # controles
+    optionsMenu.input.keyboard.addHandler(optionsMenu.input.keyboard.UP, configurations, 'up')
+    optionsMenu.input.keyboard.addHandler(optionsMenu.input.keyboard.DOWN, configurations, 'down')
+    optionsMenu.input.keyboard.addHandler(optionsMenu.input.keyboard.RETURN, configurations, 'do', optionsMenu.nextScene)
+    optionsMenu.input.register(optionsMenu.input.keyboard.getHandler())
+    # sons
+    optionsMenu.addSound('Doors', 'Game/pyGameEngine/assets/sounds/doors.mp3', -1, 0.6)
+    # Retorno
+    return optionsMenu

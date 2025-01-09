@@ -10,35 +10,44 @@
 #
 from settings import settings
 #
-# Engine
+# core
 #
-from pyGameEngine.core.game import game
+from pyGameEngine.core.scene import scene
 #
-# Extends
+# extends
 #
-from pyGameEngine.core.extends.scene.menu import menu
 from pyGameEngine.core.extends.entity.label import label
 from pyGameEngine.core.extends.entity.layer import layer
 from pyGameEngine.core.extends.entity.options import options
 #
 # mainMenu
 #
-mainMenu = menu(game.BLACK)
-# imagens
-backgroundImage = layer(0,150,'Game/pyGameEngine/assets/images/backgrounds/opening.jpg',10)
-mainMenu.addEntity(backgroundImage)
-# textos 
-title = label(20, 0, 'Little Monsters', game.RED, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 80)
-mainMenu.addEntity(title)
-subtitle = label(20, 100, 'beyond under the bed', game.WHITE, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 40)
-mainMenu.addEntity(subtitle)
-copyright = label(200, 550, 'Copyright(c)OER Tecnologia - Poweredge by PyGameEngine', game.WHITE, None, 20)
-mainMenu.addEntity(copyright)
-# opcoes
-mainOptions = options(320,300) 
-mainOptions.addItem("Start", 'stage1')
-mainOptions.addItem("Options", None)
-mainMenu.addEntity(mainOptions)
-# sons 
-mainMenu.addSound('Opening', 'Game/pyGameEngine/assets/sounds/opening.mp3', -1, 0.2)
-mainMenu.addSound('Doors', 'Game/pyGameEngine/assets/sounds/doors.mp3', -1, 0.2)
+def mainMenu(game):
+    mainMenu = scene(game.BLACK, game, False)
+    # imagens
+    backgroundImage = layer(0,150,'Game/pyGameEngine/assets/images/backgrounds/opening.jpg', 10)
+    mainMenu.addEntity(backgroundImage)
+    # textos 
+    title     = label(20, 0, 'Little Monsters', game.RED, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 80)
+    subtitle  = label(20, 100, 'beyond under the bed', game.WHITE, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 40)
+    copyright = label(200, 550, 'Copyright(c)OER Tecnologia - Poweredge by PyGameEngine', game.WHITE, None, 20)
+    mainMenu.addEntity(title)
+    mainMenu.addEntity(subtitle)
+    mainMenu.addEntity(copyright)
+    # opcoes
+    mainOptions = options(320,300) 
+    mainOptions.addItem("Start", "stage1")
+    mainOptions.addItem("Options", "optionsmenu")
+    mainOptions.selected(0)
+    mainMenu.addEntity(mainOptions)
+    # controles
+    mainMenu.input.keyboard.addHandler(mainMenu.input.keyboard.UP, mainOptions, 'up')
+    mainMenu.input.keyboard.addHandler(mainMenu.input.keyboard.DOWN, mainOptions, 'down')
+    mainMenu.input.keyboard.addHandler(mainMenu.input.keyboard.RETURN, mainOptions, 'do', mainMenu.nextScene)
+    mainMenu.input.register(mainMenu.input.keyboard.getHandler())
+    # sons 
+    mainMenu.addSound('Opening', 'Game/pyGameEngine/assets/sounds/opening.mp3', -1, 0.2)
+    mainMenu.addSound('Doors', 'Game/pyGameEngine/assets/sounds/doors.mp3', -1, 0.5)
+    # Retorno
+    return mainMenu
+

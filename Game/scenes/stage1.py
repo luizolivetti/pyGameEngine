@@ -9,70 +9,58 @@
 # https://www.freepik.com/free-photos-vectors/cartoon-kitchen
 # https://pngtree.com/freepng/monster-game-assets-ui-kit_3712767.html <-- personagens
 # https://pngtree.com/so/monster-game-assets-ui-kit
-#
-# Engine
-#
-from pyGameEngine.core.game import game
+from pyGameEngine.core.scene import scene
 #
 # Extends
 #
-from pyGameEngine.core.extends.scene.stage import stage
 from pyGameEngine.core.extends.entity.layer import layer
 from pyGameEngine.core.extends.entity.player import player
 #
 # stage1
 #
-# Scene object
-stage1 = stage(game.BLACK)
-
-# backgroundImage
-backgroundImage = layer(0,0,'Game/pyGameEngine/assets/images/backgrounds/kitchen.jpg', 4.5)
-stage1.addEntity(backgroundImage)
-
-# creating player 1
-player1 = player(0, 100, "Game/pyGameEngine/assets/images/player/1.png", 8)
-# add player 1 at the scene
-stage1.addEntity(player1)
-# mount commands for player 1
-left = stage1.keyboard.a # left 
-down = stage1.keyboard.s # down
-right = stage1.keyboard.d # right
-up = stage1.keyboard.w # up
-# regiter commands for player 1
-stage1.registerInputs(player1, left, right, up, down)
-
-# creating player 2
-player2 = player(0, 200, "Game/pyGameEngine/assets/images/player/2.png", 8)
-# add player 1 at the scene
-stage1.addEntity(player2)
-# mount commands for player 1
-left = stage1.keyboard.LEFT # left 
-down = stage1.keyboard.DOWN # down
-right = stage1.keyboard.RIGHT # right
-up = stage1.keyboard.UP # up
-# regiter commands for player 1
-stage1.registerInputs(player2, left, right, up, down)
-
-# creating player 3
-player3 = player(0, 300, "Game/pyGameEngine/assets/images/player/3.png", 8)
-# add player 1 at the scene
-stage1.addEntity(player3)
-# mount commands for player 1
-left = stage1.keyboard.h # left 
-down = stage1.keyboard.j # down
-right = stage1.keyboard.k # right
-up = stage1.keyboard.u # up
-# regiter commands for player 1
-stage1.registerInputs(player3, left, right, up, down)
-
-# creating player 4
-player4 = player(0, 400, "Game/pyGameEngine/assets/images/player/4.png", 8)
-# add player 1 at the scene
-stage1.addEntity(player4)
-# mount commands for player 1
-left = stage1.keyboard.c # left 
-down = stage1.keyboard.v # down
-right = stage1.keyboard.b # right
-up = stage1.keyboard.f # up
-# regiter commands for player 1
-stage1.registerInputs(player4, left, right, up, down)
+def stage1(game):
+    # Scene object
+    stage1 = scene(game.BLACK, game)
+    # backgroundImage
+    backgroundImage = layer(0,0,'Game/pyGameEngine/assets/images/backgrounds/kitchen.jpg', 4.5)
+    stage1.addEntity(backgroundImage)
+    # creating player 1
+    # add player 1 at the scene
+    # mount commands for player 1
+    player1 = player(0, 100, "Game/pyGameEngine/assets/images/player/1.png", 8)
+    stage1.addEntity(player1)
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.UP,    player1, 'up')
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.DOWN,  player1, 'down')
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.LEFT,  player1, 'left')
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.RIGHT, player1, 'right')
+    # creating player 2
+    # add player 2 at the scene
+    # mount commands for player 2
+    player2 = player(0, 200, "Game/pyGameEngine/assets/images/player/2.png", 8)
+    stage1.addEntity(player2)
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.w, player2, 'up')
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.s, player2, 'down')
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.a, player2, 'left')
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.d, player2, 'right')
+    # creating player 3
+    # add player 3 at the scene
+    # mount commands for player 3    
+    player3 = player(0, 300, "Game/pyGameEngine/assets/images/player/3.png", 8)
+    stage1.addEntity(player3)
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.t, player3, 'up')
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.g, player3, 'down')
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.f, player3, 'left')
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.h, player3, 'right')
+    # creating player 4
+    # add player 4 at the scene
+    # mount commands for player 4
+    player4 = player(0, 400, "Game/pyGameEngine/assets/images/player/4.png", 8)
+    stage1.addEntity(player4)
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.i, player4, 'up')
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.k, player4, 'down')
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.j, player4, 'left')
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.l, player4, 'right')
+    # registering controls
+    stage1.input.register(stage1.input.keyboard.getHandler())
+    # finally 
+    return stage1    

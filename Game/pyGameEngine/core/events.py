@@ -15,4 +15,4 @@ import pygame
 #
 class events :
      def __init__(self):
-        # to do something
+        pass

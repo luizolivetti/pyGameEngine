@@ -11,7 +11,7 @@ import pygame
 #
 # sound
 #
-class sound:
+class sound():
     #
     # __init__
     #
@@ -94,9 +94,9 @@ class sound:
         """
         pygame.mixer.unpause()
     #
-    # stop
+    # close
     #
-    def stop(self):
+    def close(self):
         """
         Para todos os canais de som.
         """

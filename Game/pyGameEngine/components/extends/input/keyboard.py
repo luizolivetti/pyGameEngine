@@ -143,13 +143,17 @@
 #  K_AC_BACK             Android back button
 import pygame
 #
-# from
-# 
-
+# tools
+#
+from functools import partial
+#
+# interface
+#
+from pyGameEngine.components.extends.input.device import device
 #
 # Class keyboard
 #
-class keyboard():
+class keyboard(device):
     #
     # __init__
     #
@@ -287,8 +291,28 @@ class keyboard():
         self.MENU       = pygame.K_MENU        
         self.POWER      = pygame.K_POWER       
         self.EURO       = pygame.K_EURO        
-        self.AC_BACK    = pygame.K_AC_BACK   
-
-
-
-  
+        self.AC_BACK    = pygame.K_AC_BACK
+        # Action list
+        self.actions = []
+    #
+    # getHandler
+    #
+    def getHandler(self):
+        dictionary = {
+            key: lambda entity=entity, action=action, param=param: (
+                getattr(entity, action)(param) if param is not None else getattr(entity, action)()
+            )
+            for key, entity, action, param in self.actions
+        }
+        return dictionary
+    #
+    # addHandler
+    #
+    def addHandler(self, key, entity, action, param=None):
+        self.actions.append((key, entity, action, param))
+    #
+    # remHandler
+    #
+    def remHandler(self, key):
+        if key in self.actions:
+            del self.actions[key]

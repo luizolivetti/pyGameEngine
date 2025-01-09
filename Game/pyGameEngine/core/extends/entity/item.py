@@ -23,7 +23,7 @@ class item(entity):
         self.textFont = textFont
         self.textSize = textSize
         self.action = action
-        self.renderer = text(x, y, textItem, textColor, textFont, textSize)
+        self.renderer = text(x, y, textItem, textColor, textFont, textSize)         
     #
     # handle_event
     #    
