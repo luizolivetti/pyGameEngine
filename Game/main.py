@@ -23,13 +23,13 @@ Game = engine(engine.BLACK)
 #
 # Relation of Scene and States
 #
-Game.addScene('mainmenu', mainMenu(Game))
-Game.addScene('optionsmenu', optionsMenu(Game))
+#Game.addScene('mainmenu', mainMenu(Game))
+#Game.addScene('optionsmenu', optionsMenu(Game))
 Game.addScene('stage1', stage1(Game))
 #
-# Starting first state
+# Starting first state 
 #
-Game.setScene('mainmenu')
+Game.setScene('stage1')
 # TO-DO : 
 #     1. Ao addScene não executar todo seu contexto - OK
 #     2. Melhorar a concepção de menu. Atualmente option é uma entity na scene
@@ -40,5 +40,6 @@ Game.setScene('mainmenu')
 #     4. Melhorar adesão de layers para que sejam ajustadas as telas
 #     5. Melhorar enquadramento para que a tela possa "correr" para os lados 
 #        quando background for maior que o enquadramento
+# https://www.gamedevmarket.net/category/2d/characters?page=160
 # executing game
 Game.run()

@@ -15,7 +15,7 @@ class label(entity):
     # __init__
     #     
     def __init__(self, x, y, textOption, textColor=(255,255,255), textFont=None, textSize=25):
-        super().__init__(x, y)
+        super().__init__(x, y, 0, 0)
         self.x = x
         self.y = y
         self.textOption = textOption
@@ -26,7 +26,7 @@ class label(entity):
     #
     # handle_event
     #    
-    def handle_event(self, event):
+    def handleEvent(self, event):
         pass       
     #
     # update

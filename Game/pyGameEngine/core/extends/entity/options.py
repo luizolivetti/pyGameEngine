@@ -15,7 +15,7 @@ class options(entity):
     # __init__
     #     
     def __init__(self, x, y, colorMenu=(255,255,255), selectedItem=(255,0,0), textFont=None, textSize=25):
-        super().__init__(x, y)
+        super().__init__(x, y, 0, 0)
         self.x = x
         self.y = y
         self.colorMenu = colorMenu

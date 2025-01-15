@@ -15,13 +15,12 @@ class layer(entity):
     # __init__
     #     
     def __init__(self, x, y, image_path, scale):
-        super().__init__(x, y)
-        self.renderer = image(x, y, image_path)
-        self.renderer.resize(scale) 
+        super().__init__(x, y, 0, 0)
+        self.setImage(image_path, scale)
     #
     # handle_event
     #    
-    def handle_event(self, event):
+    def handleEvent(self, event):
         pass       
     #
     # update

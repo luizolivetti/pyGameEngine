@@ -25,17 +25,17 @@ from pyGameEngine.core.extends.entity.options import options
 def optionsMenu(game):
     optionsMenu = scene(game.BLACK, game, False)
     # imagens
-    backgroundImage = layer(0,150,'Game/pyGameEngine/assets/images/backgrounds/opening.jpg',10)
+    backgroundImage = layer(0,0,'Game/pyGameEngine/assets/images/backgrounds/opening.jpg',5)
     optionsMenu.addEntity(backgroundImage)
     # textos 
-    title = label(20, 0, 'Little Monsters', game.RED, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 80)
+    title = label(20, 0, 'Little Monsters', game.ORANGE, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 80)
     subtitle = label(20, 100, 'beyond under the bed', game.WHITE, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf', 40)
-    copyright = label(200, 550, 'Copyright(c)OER Tecnologia - Poweredge by PyGameEngine', game.WHITE, None, 20)
+    copyright = label(20, 550, 'Copyright(c)OER Tecnologia - Poweredge by PyGameEngine', game.WHITE, None, 20)
     optionsMenu.addEntity(subtitle)
     optionsMenu.addEntity(title)
     optionsMenu.addEntity(copyright)
     # opcoes
-    configurations = options(300, 300) 
+    configurations = options(20, 300, game.WHITE, game.ORANGE, 'Game/pyGameEngine/assets/fonts/MountainsofChristmas-Regular.ttf')  
     configurations.addItem("Volume do audio", None)
     configurations.addItem("Volume dos efeitos", None)
     configurations.addItem("Volume dos dialogos", None)

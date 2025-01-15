@@ -9,7 +9,7 @@ class settings :
     # Title
     TITLE = "Little monsters - Beyond under the bed"
     # Resolution
-    SCREEN_WIDTH = 800
+    SCREEN_WIDTH = 800   
     SCREEN_HEIGHT = 600
     # Colors
     BLACK = (0, 0, 0)
@@ -17,6 +17,7 @@ class settings :
     RED = (255, 0, 0)
     GREEN = (0, 255, 0)
     BLUE = (0, 0, 255)
+    ORANGE = (239, 105, 70)
     # Frames
     FPS = 60
     # Maths

@@ -30,7 +30,8 @@ class scene(screen, settings):
         self.background = background
         self.snd = None
         self.ways = None
-        self.backgroundImage =''
+        self.backgroundImage = ''
+        self.lands = []
         self.sounds = []
         self.entities = []
         self.input = input()  
@@ -39,7 +40,7 @@ class scene(screen, settings):
     # addEntity
     #
     def addEntity(self, entity):
-        self.entities.append(entity)
+        self.entities.append(entity)      
     #
     # addSound
     #
@@ -96,25 +97,29 @@ class scene(screen, settings):
     def handleEvent(self, event):
         self.input.handleInput(self.inputContinuous)
         # inicia sons se não tiver iniciado
-        self.startSound()
+        self.startSound()      
         # handleEvent de entidades
         for entity in self.entities:
             entity.handleEvent(event)
+        # 
+        self.update()
     #
     # handleEvents
     #
     def handleEvents(self, events):
         self.input.handleInput(self.inputContinuous)
         # inicia sons se não tiver iniciado
-        self.startSound()
+        self.startSound()             
         # handleEvents de entidades
         for entity in self.entities:
             entity.handleEvents(events)   
+        # 
+        self.update()            
     #
     # update
     #
     def update(self): 
-        self.input.handleInput(self.inputContinuous)
+        self.input.handleInput(self.inputContinuous)        
         # update de entidades
         for entity in self.entities:
             entity.update()
@@ -122,10 +127,10 @@ class scene(screen, settings):
     # render
     #
     def render(self, screen):
-        # carrega sons não carregados
+        # inicia e carrega sons não carregados
+        # self.stopSounds()
         self.loadSounds()
-        # inicia sons não iniciados
-        self.playSounds()
+        self.playSounds()    
         # render de entidades            
         for entity in self.entities:
             entity.render(screen) 

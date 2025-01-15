@@ -19,6 +19,8 @@ class image(renderer):
     #
     def __init__(self, x, y, image_path):
         self.image = pygame.image.load(image_path)
+        self.x = x
+        self.y = y
         # Original size
         self.imageWidth, self.imageHeight = self.image.get_size()      
         self.rect = self.image.get_rect()
@@ -30,6 +32,10 @@ class image(renderer):
         # Resized image
         scaled_width, scaled_height = self.imageWidth // scale, self.imageHeight // scale
         self.image = pygame.transform.scale(self.image, (scaled_width, scaled_height))
+        # New size
+        self.imageWidth, self.imageHeight = self.image.get_size()   
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (self.x, self.y)
     #
     # rendering
     #
