@@ -66,9 +66,11 @@ class physics:
     def jump(self, dx, dy):
         # Quem me chamou?
         self.currentCaller = self.whois()
-        if self.velocityY <= 0:
+        # Verifica se está no chão antes de aplicar o pulo
+        if self.inGround:
+            self.velocityY = -self.maxVelocityY  # Aplica uma velocidade negativa para impulsionar a entidade para cima
             self.handleCollision(dx, dy)
-            self.update()        
+            self.inGround = False  # Marca que não está mais no chão       
     #
     # Move a entidade de acordo com a velocidade nos eixos X e Y.
     #
@@ -115,6 +117,7 @@ class physics:
         # Tentativa de mover o objeto
         self.rect.x += dx
         self.rect.y += dy
+        self.inGround = False  # Assume que não está no chão inicialmente
         # Verifica colisões com outros objetos
         for obstacle in self.instances:
             if obstacle != self.currentCaller and self.checkCollision(obstacle.rect):
@@ -127,6 +130,7 @@ class physics:
                 if dy > 0:  # Colisão com o fundo
                     self.rect.bottom = obstacle.rect.top
                     self.velocityY = 0  # Parar movimento vertical
+                    self.inGround = True  # O personagem está no chão
                 elif dy < 0:  # Colisão com o topo
                     self.rect.top = obstacle.rect.bottom
                     self.velocityY = 0  # Parar movimento vertical
