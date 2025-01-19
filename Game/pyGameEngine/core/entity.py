@@ -34,8 +34,8 @@ class entity:
     #
     # addPhysics
     #
-    def setPhysics(self, velocityX=0, velocityY=0, gravity=0.5, gravity_direction=(0, 1), maxVelocityX = 5, maxVelocityY = 10, acceleration = 0.1, friction = 0.9):
-        self.physics = physics(self.rect, velocityX, velocityY, gravity, gravity_direction, maxVelocityX, maxVelocityY, acceleration, friction)
+    def setPhysics(self, velocityX=0, velocityY=0, gravity=0.5, gravity_direction=(0, 1), maxVelocityX = 5, maxVelocityY = 10, acceleration = 0.1, friction = 0.9, screenWidth=0, screenHeight=0):
+        self.physics = physics(self.rect, velocityX, velocityY, gravity, gravity_direction, maxVelocityX, maxVelocityY, acceleration, friction, screenWidth, screenHeight)
     #
     # move
     # Atualiza o movimento com base na física

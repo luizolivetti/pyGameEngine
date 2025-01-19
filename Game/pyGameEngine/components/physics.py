@@ -24,7 +24,7 @@ class physics:
     #
     # __init__
     #
-    def __init__(self, rect, velocityX=0, velocityY=0, gravity=0.5, gravity_direction=(0, 1), maxVelocityX=5, maxVelocityY=10, acceleration=0.1, friction=0.9):
+    def __init__(self, rect, velocityX=0, velocityY=0, gravity=0.5, gravity_direction=(0, 1), maxVelocityX=5, maxVelocityY=10, acceleration=0.1, friction=0.9, screenWidth=0, screenHeight=0):
         self.rect = rect  # pygame.Rect(entityX, entityY, entityWidth, entityHeight)  # Representa a posição e tamanho da entidade
         self.velocityX = velocityX  # Velocidade no eixo X
         self.velocityY = velocityY  # Velocidade no eixo Y
@@ -34,6 +34,8 @@ class physics:
         self.maxVelocityY = maxVelocityY  # Velocidade máxima no eixo Y
         self.acceleration = acceleration  # Aceleração para movimento no eixo X
         self.friction = friction  # Fricção para desacelerar a entidade
+        self.screenWidth = screenWidth
+        self.screenHeight = screenHeight
         self.instances.append(self.whois())
         self.currentCaller = None
         self.inGround = False # to-do : monitorar se está no chão
@@ -99,7 +101,9 @@ class physics:
             self.velocityY = self.maxVelocityY if self.velocityY > 0 else -self.maxVelocityY
         # Desacelera com a fricção
         self.velocityX *= self.friction
-        self.velocityY *= self.friction
+        self.velocityY *= self.friction    
+        # 
+        self.screenLimits()
     #
     # Verifica colisão com outra entidade.
     #
@@ -108,6 +112,22 @@ class physics:
     #
     def checkCollision(self, other):
         return self.rect.colliderect(other)
+    #
+    # screenLimits
+    #
+    def screenLimits(self):
+        # Limitar o personagem no eixo X
+        if self.rect.left < 0:  # Verifica se ultrapassou o limite esquerdo
+            self.rect.left = 0
+        elif self.rect.right > self.screenWidth:  # Verifica se ultrapassou o limite direito
+            self.rect.right = self.screenWidth
+        # Limitar o personagem no eixo Y (no topo e fundo da tela)
+        if self.rect.top < 0:  # Verifica se ultrapassou o limite superior
+            self.rect.top = 0
+            self.velocityY = 0  # Impede que a velocidade Y continue afetando
+        elif self.rect.bottom > self.screenHeight:  # Verifica se ultrapassou o limite inferior
+            self.rect.bottom = self.screenHeight
+            self.velocityY = 0  # Para a queda ao atingir o fundo  
     #
     # handleCollision
     # Verifica colisão com outra entidade.
@@ -135,4 +155,4 @@ class physics:
                     self.rect.top = obstacle.rect.bottom
                     self.velocityY = 0  # Parar movimento vertical
                 # Redefine a posição após colisão para não ultrapassar obstáculos
-                break
+                break          

@@ -30,8 +30,10 @@ class engine(settings):
         self.previousState = None
         self.firstState = None
         self.countScenes = 0
+        self.screenWidth = settings.SCREEN_WIDTH
+        self.screenHeight = settings.SCREEN_HEIGHT
         # Define Window
-        self.screen = screen(settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT)
+        self.screen = screen(self.screenWidth, self.screenHeight)
         self.screen.setWindowCaption(settings.TITLE)
         self.screen.setWindowBackground(color)
         self.screen.setTimer()
