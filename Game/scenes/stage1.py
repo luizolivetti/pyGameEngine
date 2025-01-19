@@ -27,18 +27,18 @@ def stage1(game):
     backgroundImage = layer(0,0,'Game/pyGameEngine/assets/images/backgrounds/kitchen.jpg', 5)
     stage1.addEntity(backgroundImage)
     # floor and platforms
-    land1 = land(0, 550, 799, 50, "solid")
+    land1 = land(0, 610, 800, 25, "solid")
     land1.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, game.screenWidth, game.screenHeight)
     stage1.addEntity(land1) # Chão
-    land2 = land(200, 400, 200, 20, "solid")
+    land2 = land(20, 380, 480, 15, "solid")
     land2.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, game.screenWidth, game.screenHeight)
     stage1.addEntity(land2) # Plataforma sólida
-    land3 = land(500, 300, 150, 20, "floating")
+    land3 = land(515, 270, 150, 10, "solid")
     land3.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, game.screenWidth, game.screenHeight)  
     stage1.addEntity(land3) # Plataforma flutuante
-    land4 = land(350, 150, 100, 20, "hole")  
-    land4.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, game.screenWidth, game.screenHeight)  
-    stage1.addEntity(land4) # Buraco
+    # land4 = land(350, 150, 100, 20, "hole")  
+    # land4.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, game.screenWidth, game.screenHeight)  
+    # stage1.addEntity(land4) # Buraco
     # creating player 1
     # add player 1 at the scene
     # mount commands for player 1

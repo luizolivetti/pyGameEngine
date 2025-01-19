@@ -10,6 +10,7 @@ import pygame
 # core
 #
 from pyGameEngine.core.entity import entity
+from pyGameEngine.core.draw import draw
 #
 # land
 #
@@ -22,6 +23,7 @@ class land(entity):
         self.x = x
         self.y = y
         self.type = platform_type  # Pode ser "solid", "hole", "floating", etc.
+        self.draw = draw(x, y)
     #
     # interact
     # Interage com o jogador dependendo do tipo de plataforma
@@ -42,7 +44,8 @@ class land(entity):
     #
     def render(self, screen):
         if self.type == "solid":
-            pygame.draw.rect(screen, (0, 255, 0), self.rect)  # Cor verde para plataforma sólida
+            self.draw.rectAlpha(screen, (0, 0, 255, 0), self.rect)
+            # pygame.draw.rect(screen, (0, 255, 0), self.rect)  # Cor verde para plataforma sólida
         elif self.type == "hole":
             pygame.draw.rect(screen, (255, 0, 0), self.rect)  # Cor vermelha para buracos
         elif self.type == "floating":
