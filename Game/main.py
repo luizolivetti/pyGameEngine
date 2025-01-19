@@ -23,13 +23,13 @@ Game = engine(engine.BLACK)
 #
 # Relation of Scene and States
 #
-# Game.addScene('mainmenu', mainMenu(Game))
-# Game.addScene('optionsmenu', optionsMenu(Game))
+Game.addScene('mainmenu', mainMenu(Game))
+Game.addScene('optionsmenu', optionsMenu(Game))
 Game.addScene('stage1', stage1(Game))
 #
 # Starting first state 
 #
-Game.setScene('stage1')
+Game.setScene('mainmenu')
 # TO-DO : 
 #     1. Ao addScene não executar todo seu contexto - OK
 #     2. Melhorar a concepção de menu. Atualmente option é uma entity na scene
