@@ -46,7 +46,7 @@ def stage1(game):
     player1.setImage("Game/pyGameEngine/assets/images/player/1.png", 8)
     player1.setPhysics(0, 0, 0.5, (0, 1), 5, 10, 0.1, 0.9)
     stage1.addEntity(player1)
-    stage1.input.keyboard.addHandler(stage1.input.keyboard.UP,    player1, 'jump', param=-5)
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.UP,    player1, 'jump', param=-15)
     stage1.input.keyboard.addHandler(stage1.input.keyboard.DOWN,  player1, 'down')
     stage1.input.keyboard.addHandler(stage1.input.keyboard.LEFT,  player1, 'left')
     stage1.input.keyboard.addHandler(stage1.input.keyboard.RIGHT, player1, 'right')

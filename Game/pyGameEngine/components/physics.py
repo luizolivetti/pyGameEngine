@@ -74,7 +74,8 @@ class physics:
     #
     def update(self):
         # Quem me chamou?
-        self.currentCaller = self.whois()
+        if(self.currentCaller == None):
+            self.currentCaller = self.whois()
         # Aplica a gravidade
         self.applyGravity()
         # Limita a velocidade
