@@ -23,8 +23,8 @@ Game = engine(engine.BLACK)
 #
 # Relation of Scene and States
 #
-#Game.addScene('mainmenu', mainMenu(Game))
-#Game.addScene('optionsmenu', optionsMenu(Game))
+# Game.addScene('mainmenu', mainMenu(Game))
+# Game.addScene('optionsmenu', optionsMenu(Game))
 Game.addScene('stage1', stage1(Game))
 #
 # Starting first state 

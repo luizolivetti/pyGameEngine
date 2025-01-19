@@ -34,11 +34,8 @@ class entity:
     #
     # addPhysics
     #
-    def togglePhysics(self, velocityX=0, velocityY=0, gravity=0.5, maxVelocityX = 5, maxVelocityY = 10, acceleration = 0.1, friction = 0.9):
-        if self.physics:
-           self.physics = None
-        else:       
-           self.physics = physics(self.rect, velocityX, velocityY, gravity, maxVelocityX, maxVelocityY, acceleration, friction)
+    def setPhysics(self, velocityX=0, velocityY=0, gravity=0.5, gravity_direction=(0, 1), maxVelocityX = 5, maxVelocityY = 10, acceleration = 0.1, friction = 0.9):
+        self.physics = physics(self.rect, velocityX, velocityY, gravity, gravity_direction, maxVelocityX, maxVelocityY, acceleration, friction)
     #
     # move
     # Atualiza o movimento com base na física
@@ -71,8 +68,7 @@ class entity:
     # jump
     #
     def jump(self, dy):
-        if self.physics:
-           self.physics.jump()  
+         self.move(0, dy)
     #  
     # update
     # Atualiza a física do jogador (movimento e gravidade)
@@ -85,8 +81,8 @@ class entity:
     # Renderiza a imagem do jogador
     #      
     def render(self, screen):
-        if self.physics and self.renderer:
-            self.renderer.rect.topleft = self.physics.rect.topleft
+        # if self.physics and self.renderer:
+        #     self.renderer.rect.topleft = self.physics.rect.topleft
         if self.renderer:
             self.renderer.render(screen)   
     #
