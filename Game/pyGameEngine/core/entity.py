@@ -43,7 +43,13 @@ class entity:
     #
     def move(self, dx, dy):
         if self.physics:
-           self.physics.move(dx, dy)       
+           self.physics.move(dx, dy)      
+    #
+    # jump
+    #
+    def jump(self, dy):
+        if self.physics:
+           self.physics.jump(0, dy)             
     #
     # up (pular)
     #
@@ -64,11 +70,6 @@ class entity:
     #
     def right(self):
         self.move(5, 0)
-    #
-    # jump
-    #
-    def jump(self, dy):
-         self.move(0, dy)
     #  
     # update
     # Atualiza a física do jogador (movimento e gravidade)

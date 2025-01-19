@@ -62,6 +62,18 @@ class physics:
     #
     # :param dx: Deslocamento no eixo X.
     # :param dy: Deslocamento no eixo Y.
+    #        
+    def jump(self, dx, dy):
+        # Quem me chamou?
+        self.currentCaller = self.whois()
+        if self.velocityY <= 0:
+            self.handleCollision(dx, dy)
+            self.update()        
+    #
+    # Move a entidade de acordo com a velocidade nos eixos X e Y.
+    #
+    # :param dx: Deslocamento no eixo X.
+    # :param dy: Deslocamento no eixo Y.
     #
     def move(self, dx, dy):
         # Quem me chamou?
