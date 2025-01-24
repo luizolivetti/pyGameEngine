@@ -6,6 +6,7 @@
 #  @revisor                   @data 
 #  ----------------------------------------------------------
 import inspect
+import time
 #
 # Inicializa a classe de física para um objeto.
 #
@@ -54,11 +55,13 @@ class physics:
     #
     # Aplica a gravidade ao objeto, fazendo com que ele caia.
     #
+    # :param reverse: inverte o sentido da gravidade, fazendo com que o objeto suba.
+    #
     def applyGravity(self):
         # Calcula a aceleração da gravidade com base na direção
         self.velocityX += self.gravity * self.gravity_direction[0]
         self.velocityY += self.gravity * self.gravity_direction[1]
-        self.handleCollision(self.velocityX, self.velocityY)
+        self.handleCollision(self.velocityX, self.velocityY)     
     #
     # Move a entidade de acordo com a velocidade nos eixos X e Y.
     #
@@ -70,9 +73,10 @@ class physics:
         self.currentCaller = self.whois()
         # Verifica se está no chão antes de aplicar o pulo
         if self.inGround:
-            self.velocityY = -self.maxVelocityY  # Aplica uma velocidade negativa para impulsionar a entidade para cima
-            self.handleCollision(dx, dy)
-            self.inGround = False  # Marca que não está mais no chão       
+           self.velocityY -= self.maxVelocityY # Aplica uma velocidade negativa para impulsionar a entidade para cima
+           self.handleCollision(dx, dy)
+           self.update()
+           self.inGround = False  # Marca que não está mais no chão    
     #
     # Move a entidade de acordo com a velocidade nos eixos X e Y.
     #

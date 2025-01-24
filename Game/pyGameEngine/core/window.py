@@ -7,18 +7,27 @@
 #  ----------------------------------------------------------
 import pygame
 #
-# Class window
+#
+#
+from pyGameEngine.core.timer import timer
+#
+# Class window 
 #
 class window :
     #
     # properties
     # 
     handler = None
+    timer = None
+    color = (0,0,0)
     #
     # Setting
     #
-    def __init__(self, width, height) :
+    def __init__(self, width, height, title, color):
         self.handler = pygame.display.set_mode((width, height))
+        self.background(color)
+        self.caption(title)
+        self.timer = timer()
     #
     # caption
     #

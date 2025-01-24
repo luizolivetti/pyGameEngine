@@ -15,7 +15,22 @@ class timer :
     # 
     clock = None
     #
-    # Getting
+    # __init__
+    # 
+    def __init__(self):
+        self.setClock()  
     #
-    def get():
-        timer.clock = pygame.time.Clock()
+    # setClock
+    #
+    def setClock(self):
+        self.clock = pygame.time.Clock() 
+    #
+    # tick
+    #
+    def tick(self, ms):
+        self.clock.tick(ms)        
+    #
+    # getClock
+    #
+    def getClock(self):
+        return self.clock     

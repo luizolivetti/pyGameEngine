@@ -49,7 +49,7 @@ class entity:
     #
     def jump(self, dy):
         if self.physics:
-           self.physics.jump(0, dy)             
+           self.physics.jump(0, dy)
     #
     # up (pular)
     #
@@ -76,7 +76,9 @@ class entity:
     #      
     def update(self):
         if self.physics:
-           self.physics.update()              
+           self.physics.update()   
+           self.x = self.physics.rect.x
+           self.y = self.physics.rect.y
     #  
     # render
     # Renderiza a imagem do jogador

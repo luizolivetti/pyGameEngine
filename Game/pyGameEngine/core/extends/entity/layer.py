@@ -17,6 +17,8 @@ class layer(entity):
     def __init__(self, x, y, image_path, scale):
         super().__init__(x, y, 0, 0)
         self.setImage(image_path, scale)
+        self.width = self.renderer.imageWidth
+        self.height = self.renderer.imageHeight
     #
     # handle_event
     #    

@@ -10,46 +10,54 @@ import pygame
 # configurations
 #
 from settings import settings
-from pyGameEngine.core.screen import screen
+from pyGameEngine.core.scene import scene
+from pyGameEngine.core.window import window
 #
 # Class game
 #
 class engine(settings):
+    #
+    # properties
+    #
+    window = None
+    scene = None
+    scenes = {}
+    running = True
+    firstState = None
+    currentState = None
+    previousState = None
+    countScenes = 0    
     #
     # Initialization
     #
     def __init__(self, color):
         # Initializing pyGame
         pygame.init()    
-        #
-        self.running = True
-        self.screen = None
-        self.scene = None
-        self.scenes = {}
-        self.currentState = None
-        self.previousState = None
-        self.firstState = None
-        self.countScenes = 0
-        self.screenWidth = settings.SCREEN_WIDTH
-        self.screenHeight = settings.SCREEN_HEIGHT
-        # Define Window
-        self.screen = screen(self.screenWidth, self.screenHeight)
-        self.screen.setWindowCaption(settings.TITLE)
-        self.screen.setWindowBackground(color)
-        self.screen.setTimer()
-        # to-do it better
-        self.clock = pygame.time.Clock()
+        # Initializing variables 
+        self.window = window(settings.WINDOW_WIDTH, settings.WINDOW_HEIGHT, settings.TITLE, color)
     #
     # addScene
     #
-    def addScene(self, state, scene):
-        self.scenes[state] = scene  
-        self.countScenes = len(self.scenes)            
+    def addScene(self, state, background, inputContinuous=True):
+        self.scenes[state] = scene(background, inputContinuous, self.window)  
+        self.countScenes = len(self.scenes)           
     #
     # getScene
     #
     def getScene(self, state):
-            self.scenes[state]    
+        return self.scenes[state]  
+    #
+    # nextScene
+    # 
+    def nextScene(self, state):
+        self.currentState.media.stopSounds()
+        self.setScene(state)  
+    #
+    # previousScene
+    #         
+    def previousScene(self):
+        self.currentState.media.stopSounds()
+        self.setScene(self.previousState)           
     #
     # setScene
     #
@@ -64,9 +72,9 @@ class engine(settings):
     # 
     def executeScene(self):  
         if self.currentState is not None:
-            self.screen.setWindowBackground(self.currentState.background)
+            self.window.background(self.currentState.background)
             self.currentState.update()
-            self.currentState.render(self.screen.getWindowHandler())                  
+            self.currentState.render(self.window.getHandler())                  
     #
     # Loop
     #
@@ -85,7 +93,7 @@ class engine(settings):
             self.executeScene()
 
             pygame.display.flip()
-            self.clock.tick(60)
+            self.window.timer.tick(settings.FPS)
 
         pygame.quit()
     #
@@ -109,6 +117,6 @@ class engine(settings):
     #
     # render
     #
-    def render(self, screen):
+    def render(self, window):
         if self.currentState is not None:
-           self.currentState.render(screen)        
+           self.currentState.render(window)        

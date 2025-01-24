@@ -17,9 +17,10 @@ class draw:
     #
     #
     def rectAlpha(self, surface, color, rect):
-        shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
-        pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
-        surface.blit(shape_surf, rect)
+        if rect.width > 0 and rect.height > 0:
+            shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
+            pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
+            surface.blit(shape_surf, rect)
     #
     #
     #

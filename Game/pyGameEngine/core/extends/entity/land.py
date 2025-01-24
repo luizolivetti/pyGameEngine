@@ -44,7 +44,7 @@ class land(entity):
     #
     def render(self, screen):
         if self.type == "solid":
-            self.draw.rectAlpha(screen, (0, 0, 255, 0), self.rect)
+            self.draw.rectAlpha(screen, (0, 0, 255, 255), self.rect)
             # pygame.draw.rect(screen, (0, 255, 0), self.rect)  # Cor verde para plataforma sólida
         elif self.type == "hole":
             pygame.draw.rect(screen, (255, 0, 0), self.rect)  # Cor vermelha para buracos

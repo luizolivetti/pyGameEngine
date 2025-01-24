@@ -1,14 +1,14 @@
 #  ----------------------------------------------------------
 #  STAGE 1
-#  First stage of the game
+#  First stage of the Game
 #  ----------------------------------------------------------
 #  @author  Luiz Olivetti     @data 20/12/2024
 #  @revisor Luiz Olivetti     @data 06/01/2025
 #  ----------------------------------------------------------
 #
 # https://www.freepik.com/free-photos-vectors/cartoon-kitchen
-# https://pngtree.com/freepng/monster-game-assets-ui-kit_3712767.html <-- personagens
-# https://pngtree.com/so/monster-game-assets-ui-kit
+# https://pngtree.com/freepng/monster-Game-assets-ui-kit_3712767.html <-- personagens
+# https://pngtree.com/so/monster-Game-assets-ui-kit
 from pyGameEngine.core.scene import scene
 #
 # Extends
@@ -20,39 +20,41 @@ from pyGameEngine.core.extends.entity.label import label
 #
 # stage1
 #
-def stage1(game):
+def mountStage1(Game):
     # Scene object
-    stage1 = scene(game.BLACK, game)
+    Game.addScene('stage1', Game.BLACK, True)
+    stage1 = Game.getScene('stage1')
     # backgroundImage
     backgroundImage = layer(0,0,'Game/pyGameEngine/assets/images/backgrounds/kitchen.jpg', 5)
-    stage1.addEntity(backgroundImage)
+    stage1.addLayerBackground(backgroundImage)
+    # stage1.addEntity(backgroundImage)
     # floor and platforms
-    land1 = land(0, 610, 800, 25, "solid")
-    land1.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, game.screenWidth, game.screenHeight)
+    land1 = land(0, 610, 1600, 25, "solid")
+    land1.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, Game.window.handler.get_width(), Game.window.handler.get_height())
     stage1.addEntity(land1) # Chão
     land2 = land(20, 380, 480, 15, "solid")
-    land2.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, game.screenWidth, game.screenHeight)
+    land2.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, Game.window.handler.get_width(), Game.window.handler.get_height())
     stage1.addEntity(land2) # Plataforma sólida
     land3 = land(515, 270, 150, 10, "solid")
-    land3.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, game.screenWidth, game.screenHeight)  
+    land3.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, Game.window.handler.get_width(), Game.window.handler.get_height()) 
     stage1.addEntity(land3) # Plataforma flutuante
     # land4 = land(350, 150, 100, 20, "hole")  
-    # land4.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, game.screenWidth, game.screenHeight)  
+    # land4.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0, Game.window.handler.get_width(), Game.window.handler.get_height()) 
     # stage1.addEntity(land4) # Buraco
     # creating player 1
     # add player 1 at the scene
     # mount commands for player 1
     player1 = player(0, 100, 0, 0)
     player1.setImage("Game/pyGameEngine/assets/images/player/1.png", 8)
-    player1.setPhysics(0, 0, 0.5, (0, 1), 5, 10, 0.1, 0.9, game.screenWidth, game.screenHeight)
+    player1.setPhysics(0, 0, 0.5, (0, 1), 5, 10, 0.1, 0.9, Game.window.handler.get_width(), Game.window.handler.get_height())
     stage1.addEntity(player1)
     stage1.input.keyboard.addHandler(stage1.input.keyboard.SPACE, player1, 'jump', param=-200)
     stage1.input.keyboard.addHandler(stage1.input.keyboard.DOWN,  player1, 'down')
     stage1.input.keyboard.addHandler(stage1.input.keyboard.LEFT,  player1, 'left')
     stage1.input.keyboard.addHandler(stage1.input.keyboard.RIGHT, player1, 'right')
     # to-do: how to get the velocity of the player
-    x = label(20, 0, "x: " + str(player1.physics.velocityX), game.WHITE)
-    y = label(20, 15, "y: " + str(player1.physics.velocityY), game.WHITE)
+    x = label(20, 0, "x: " + str(player1.x), Game.WHITE)
+    y = label(20, 15, "y: " + str(player1.y), Game.WHITE)
     stage1.addEntity(x)
     stage1.addEntity(y)
     # creating player 2

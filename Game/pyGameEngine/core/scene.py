@@ -6,98 +6,53 @@
 #  @revisor                   @data 
 #  ----------------------------------------------------------
 #
-# settings
-#
-from settings import settings
-#
-# core
-#
-from pyGameEngine.core.sound import sound
-from pyGameEngine.core.screen import screen
-#
 # components
 #
 from pyGameEngine.components.input import input
+from pyGameEngine.components.media import media
 #
 # scene
 #
-class scene(screen, settings):
+class scene():
     #
     # __init__
     #
-    def __init__(self, background, game, inputContinuous=True):
-        self.game = game
+    def __init__(self, background, inputContinuous=True, window=None):
+        # 
         self.background = background
-        self.snd = None
-        self.ways = None
-        self.backgroundImage = ''
-        self.lands = []
-        self.sounds = []
+        self.window = window
+        self.media = media() 
+        self.input = input() 
         self.entities = []
-        self.input = input()  
+        # scene background can overwrite window background
+        self.window.background(background)
+        # input controls on the scene
         self.inputContinuous = inputContinuous
+    #
+    # addBackground
+    #
+    def addLayerBackground(self, layer):
+        self.backgroundImage = layer        
+        self.backgroundImageWidth = layer.width
+        self.backgroundImageHeight = layer.height    
+        self.addEntity(layer)
     #
     # addEntity
     #
     def addEntity(self, entity):
-        self.entities.append(entity)      
+        self.entities.append(entity)        
     #
-    # addSound
-    #
-    def addSound(self, name, file, loop, volume):
-        self.sounds.append({'name': name, 'file': file, 'loop': loop, 'volume': volume})   
-    #
-    # startSound
-    #
-    def startSound(self):
-        if self.snd is None:
-            self.snd = sound()
-    #
-    # loadSound
-    #
-    def loadSounds(self):
-        self.startSound()
-        for sound in self.sounds:
-            if sound['name'] not in self.snd.sounds:
-                self.snd.load(sound['name'], sound['file'])           
-    #
-    # playSounds
-    #
-    def playSounds(self):
-        # handleEvent de sons
-        if len(self.sounds)>0:
-            for sound in self.sounds:
-                self.snd.play(sound['name'], sound['loop'])
-                self.snd.volume(sound['name'], sound['volume']) 
-    #
-    # playSounds
-    #
-    def stopSounds(self):
-        # handleEvent de sons
-        if len(self.sounds)>0:
-            for sound in self.sounds:
-                if self.snd is not None:
-                    self.snd.stop(sound['name'])                
-                    self.snd.close()
-    #
-    # nextScene
+    # moveScene
     # 
-    def nextScene(self, state):
-        self.stopSounds()
-        self.game.setScene(state)
-    #
-    # previousScene
-    #
-    def previousScene(self):
-        self.stopSounds()
-        self.game.setScene(self.game.previousState)   
+    def moveScene(self, dx, dy):
+        pass 
     #
     # handle_event
     #
     def handleEvent(self, event):
         self.input.handleInput(self.inputContinuous)
         # inicia sons se não tiver iniciado
-        self.startSound()      
+        self.media.startSound()      
         # handleEvent de entidades
         for entity in self.entities:
             entity.handleEvent(event)
@@ -109,7 +64,7 @@ class scene(screen, settings):
     def handleEvents(self, events):
         self.input.handleInput(self.inputContinuous)
         # inicia sons se não tiver iniciado
-        self.startSound()             
+        self.media.startSound()             
         # handleEvents de entidades
         for entity in self.entities:
             entity.handleEvents(events)   
@@ -119,18 +74,17 @@ class scene(screen, settings):
     # update
     #
     def update(self): 
-        self.input.handleInput(self.inputContinuous)        
+        self.input.handleInput(self.inputContinuous)
         # update de entidades
-        for entity in self.entities:
+        for entity in self.entities:     
             entity.update()
     #
     # render
     #
     def render(self, screen):
         # inicia e carrega sons não carregados
-        # self.stopSounds()
-        self.loadSounds()
-        self.playSounds()    
+        self.media.loadSounds()
+        self.media.playSounds()    
         # render de entidades            
         for entity in self.entities:
             entity.render(screen) 
