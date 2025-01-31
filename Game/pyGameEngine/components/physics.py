@@ -25,7 +25,7 @@ class physics:
     #
     # __init__
     #
-    def __init__(self, rect, velocityX=0, velocityY=0, gravity=0.5, gravity_direction=(0, 1), maxVelocityX=5, maxVelocityY=10, acceleration=0.1, friction=0.9, screenWidth=0, screenHeight=0):
+    def __init__(self, rect, velocityX=0, velocityY=0, gravity=0.5, gravity_direction=(0, 1), maxVelocityX=5, maxVelocityY=10, acceleration=0.1, friction=0.9):
         self.rect = rect  # pygame.Rect(entityX, entityY, entityWidth, entityHeight)  # Representa a posição e tamanho da entidade
         self.velocityX = velocityX  # Velocidade no eixo X
         self.velocityY = velocityY  # Velocidade no eixo Y
@@ -35,8 +35,8 @@ class physics:
         self.maxVelocityY = maxVelocityY  # Velocidade máxima no eixo Y
         self.acceleration = acceleration  # Aceleração para movimento no eixo X
         self.friction = friction  # Fricção para desacelerar a entidade
-        self.screenWidth = screenWidth
-        self.screenHeight = screenHeight
+        self.screenWidth = 0
+        self.screenHeight = 0
         self.instances.append(self.whois())
         self.currentCaller = None
         self.inGround = False # to-do : monitorar se está no chão

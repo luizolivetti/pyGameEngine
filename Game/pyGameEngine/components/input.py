@@ -10,9 +10,9 @@ import time
 #
 # Extends
 #
+from pyGameEngine.components.extends.input.mouse import mouse
 from pyGameEngine.components.extends.input.joystick import joystick
 from pyGameEngine.components.extends.input.keyboard import keyboard
-from pyGameEngine.components.extends.input.mouse import mouse
 #
 # Class input
 #

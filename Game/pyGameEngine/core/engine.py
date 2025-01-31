@@ -38,8 +38,8 @@ class engine(settings):
     #
     # addScene
     #
-    def addScene(self, state, background, inputContinuous=True):
-        self.scenes[state] = scene(background, inputContinuous, self.window)  
+    def addScene(self, state, background, inputContinuous=True, sceneSize=(0,0)):
+        self.scenes[state] = scene(background, inputContinuous, self.window, sceneSize)  
         self.countScenes = len(self.scenes)           
     #
     # getScene

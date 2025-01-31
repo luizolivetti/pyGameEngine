@@ -29,7 +29,7 @@ mountStage1(Game)
 #
 # Starting first state 
 #
-Game.setScene('mainmenu')
+Game.setScene('stage1')
 #
 # Executing game
 #

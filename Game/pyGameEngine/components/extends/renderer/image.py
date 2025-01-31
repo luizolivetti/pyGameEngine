@@ -29,6 +29,8 @@ class image(renderer):
     # resize
     #
     def resize(self, scale):
+        if scale==0:
+            scale=1
         # Resized image
         scaled_width, scaled_height = self.imageWidth // scale, self.imageHeight // scale
         self.image = pygame.transform.scale(self.image, (scaled_width, scaled_height))
