@@ -19,6 +19,8 @@ class layer(entity):
         self.setImage(image_path, scale)
         self.width = self.renderer.imageWidth
         self.height = self.renderer.imageHeight
+        self.x = x
+        self.y = y
     #
     # handle_event
     #    

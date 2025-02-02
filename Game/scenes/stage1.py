@@ -27,18 +27,28 @@ def mountStage1(Game):
     # backgroundImage added like layer
     backgroundImage = layer(0,0,'Game/pyGameEngine/assets/images/backgrounds/kitchenp.jpg', 0)
     stage1.addLayer('background',backgroundImage)
+
+    trash = layer(200, 500, 'Game/pyGameEngine/assets/images/elements/trash.png', 10)
+    stage1.addLayer('trash', trash)
     # floor and platforms
-    land1 = land(0, 610, 1500, 25, "solid")
+    land1 = land(0, 580, 1500, 25, (0,0,0,0))
+    land1.drawLine()
     land1.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0)
     stage1.addLand('floor', land1) # Chão
-    land2 = land(20, 380, 480, 15, "solid")
+    land2 = land(20, 380, 480, 15, (0,0,0,0))
+    land2.drawLine()
     land2.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0)
     stage1.addLand('sink', land2) # Plataforma sólida
-    land3 = land(515, 270, 150, 10, "solid")
+    land3 = land(515, 270, 150, 10, (0,0,0,0))
+    land3.drawLine()
     land3.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0) 
     stage1.addLand('shelf', land3) # Plataforma flutuante
+    land4 = land(680, 370, 400, 10, (0,0,0,0))
+    land4.drawLine()
+    land4.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0)
+    stage1.addLand('sink2', land4) # Plataforma sólida
     # add player 1 at the scene and mount commands for player 1
-    player1 = player(0, 610, 0, 0)
+    player1 = player(10, 600, 0, 0)
     player1.setImage("Game/pyGameEngine/assets/images/player/1.png", 8)
     player1.setPhysics(0, 0, 0.5, (0, 1), 5, 10, 0.1, 0.9)
     stage1.addPlayer('player1', player1)

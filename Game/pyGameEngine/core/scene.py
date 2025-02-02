@@ -5,6 +5,7 @@
 #  @author  Luiz Olivetti     @data 20/12/2024
 #  @revisor                   @data 
 #  ----------------------------------------------------------
+import pygame
 #
 # components
 #
@@ -38,26 +39,38 @@ class scene():
         self.layerImageHeight = {}  
         self.cameraX = 0
         self.cameraY = 0
-        self.position = 0
+        self.position = (0,0)
         # scene size
         if sceneSize==(0,0) and window is not None:
             self.sceneSize = (window.handler.get_width(), window.handler.get_height())  
         else:
             self.sceneSize = sceneSize    
+        # scene context
+        # self.context = pygame.Surface((self.sceneSize[0], self.sceneSize[1]))
         # scene background can overwrite window background
         self.window.background(backgroundColor)
         # input controls on the scene
-        self.inputContinuous = inputContinuous
+        self.inputContinuous = inputContinuous   
     #
     # addLayer
     # Layers to compose the scene
     # Layers are type of entity, a image with position and size
     #
-    def addLayer(self, name, layer):
+    def addLayer(self, name, layer, addContext=False):
         self.layerImage[name] = layer        
         self.layerImageWidth[name] = layer.width
-        self.layerImageHeight[name] = layer.height    
+        self.layerImageHeight[name] = layer.height  
+        # if addContext:
+        #    self.context.blit(layer.renderer.image, layer.renderer.rect) 
         self.addEntity(layer)
+    #
+    # addLand
+    #
+    def addLand(self, name, land, addContext=False):
+        self.lands[name] = land        
+        # if addContext:
+        #    self.context.blit(land.renderer.image, land.renderer) 
+        self.addEntity(land)          
     #
     # addPlayer
     #
@@ -65,32 +78,36 @@ class scene():
         self.players[name] = player          
         self.addEntity(player)   
     #
-    # addLand
-    #
-    def addLand(self, name, land):
-        self.lands[name] = land          
-        self.addEntity(land)              
-    #
     # addEntity
     # Entites to players, enemies, platforms, etc
     #
     def addEntity(self, entity):
         # Set limits of the scene
         if isinstance(entity.physics, physics):
-            entity.physics.screenWidth = self.sceneSize[0]
-            entity.physics.screenHeight = self.sceneSize[1]
+            entity.physics.screenWidth = self.window.handler.get_width()
+            entity.physics.screenHeight = self.window.handler.get_height()
         # Add entity to the scene
         self.entities.append(entity)        
     #
     # rollScene
-    # to-do: travar o movimento no centro da tela
     #
     def rollScene(self, player):
-        self.cameraX = player.x - self.window.handler.get_width() // 2
+        # proporsional divisor
+        divisor = self.sceneSize[0] * 0.1
+        if divisor <= 0:
+            divisor=1
+        # calculating X axis for camera 
         self.cameraX = max(0, min(self.cameraX, self.sceneSize[0] - self.window.handler.get_width()))
+        self.cameraX += (player.x - self.cameraX - self.window.handler.get_width() / divisor) * 0.1
+        # moving elements layer
+        print(self.cameraX)
         for name, layerImage in self.layerImage.items():
-            layerImage.renderer.rect.topleft = (-self.cameraX, 0)    
-        print(self.cameraX)     
+            if hasattr(layerImage, "renderer") and hasattr(layerImage.renderer, "rect"):
+                layerImage.renderer.rect.topleft = (layerImage.x-self.cameraX, layerImage.renderer.rect.y)    
+        # moving elements land
+        for name, land in self.lands.items():
+            if hasattr(land, "renderer") and hasattr(land.renderer, "rect"):
+                land.renderer.rect.topleft = (land.x-self.cameraX, land.renderer.rect.y)    
     #
     # handle_event
     #
@@ -121,9 +138,9 @@ class scene():
     def update(self): 
         self.input.handleInput(self.inputContinuous)
         # update de entidades
-        for entity in self.entities:   
+        for entity in self.entities:  
             if isinstance(entity, player):
-                self.rollScene(entity)            
+                 self.rollScene(entity)  
             entity.update()
     #
     # render

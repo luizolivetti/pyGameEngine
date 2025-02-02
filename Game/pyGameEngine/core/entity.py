@@ -11,6 +11,7 @@ import pygame
 #
 from pyGameEngine.components.physics import physics
 from pyGameEngine.components.extends.renderer.image import image
+from pyGameEngine.components.extends.renderer.draw import draw
 #
 # entity
 #
@@ -25,12 +26,18 @@ class entity:
         self.physics = None
         self.renderer = None
     #
-    # addPhysics
+    # setImage
     #
     def setImage(self, imagePath, imageScale):
         self.renderer = image(self.x, self.y, imagePath)
         self.renderer.resize(imageScale)
         self.rect = self.renderer.rect
+    #
+    # drawLine
+    #
+    def drawLine(self):
+        self.renderer = draw(self.rect)  
+        self.renderer.rectAlpha(self.color)  
     #
     # addPhysics
     #
@@ -91,7 +98,7 @@ class entity:
     #      
     def render(self, screen):
         if self.renderer:
-            self.renderer.render(screen)   
+           self.renderer.render(screen)   
     #
     # handle_event
     #    
