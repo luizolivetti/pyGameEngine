@@ -50,9 +50,9 @@ def mountStage1(Game):
     # add player 1 at the scene and mount commands for player 1
     player1 = player(10, 600, 0, 0)
     player1.setImage("Game/pyGameEngine/assets/images/player/1.png", 8)
-    player1.setPhysics(0, 0, 0.5, (0, 1), 5, 10, 0.1, 0.9)
+    player1.setPhysics(0, 0, 0.8, (0, 1), 5, 35, 0.1, 0.9)
     stage1.addPlayer('player1', player1)
-    stage1.input.keyboard.addHandler(stage1.input.keyboard.SPACE, player1, 'jump', param=-200)
+    stage1.input.keyboard.addHandler(stage1.input.keyboard.SPACE, player1, 'jump')
     stage1.input.keyboard.addHandler(stage1.input.keyboard.DOWN,  player1, 'down')
     stage1.input.keyboard.addHandler(stage1.input.keyboard.LEFT,  player1, 'left')
     stage1.input.keyboard.addHandler(stage1.input.keyboard.RIGHT, player1, 'right')

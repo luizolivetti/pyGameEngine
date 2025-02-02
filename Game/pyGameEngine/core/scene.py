@@ -45,9 +45,6 @@ class scene():
             self.sceneSize = (window.handler.get_width(), window.handler.get_height())  
         else:
             self.sceneSize = sceneSize    
-        # scene context
-        # self.context = pygame.Surface((self.sceneSize[0], self.sceneSize[1]))
-        # scene background can overwrite window background
         self.window.background(backgroundColor)
         # input controls on the scene
         self.inputContinuous = inputContinuous   
@@ -60,16 +57,12 @@ class scene():
         self.layerImage[name] = layer        
         self.layerImageWidth[name] = layer.width
         self.layerImageHeight[name] = layer.height  
-        # if addContext:
-        #    self.context.blit(layer.renderer.image, layer.renderer.rect) 
         self.addEntity(layer)
     #
     # addLand
     #
     def addLand(self, name, land, addContext=False):
         self.lands[name] = land        
-        # if addContext:
-        #    self.context.blit(land.renderer.image, land.renderer) 
         self.addEntity(land)          
     #
     # addPlayer
@@ -100,7 +93,6 @@ class scene():
         self.cameraX = max(0, min(self.cameraX, self.sceneSize[0] - self.window.handler.get_width()))
         self.cameraX += (player.x - self.cameraX - self.window.handler.get_width() / divisor) * 0.1
         # moving elements layer
-        print(self.cameraX)
         for name, layerImage in self.layerImage.items():
             if hasattr(layerImage, "renderer") and hasattr(layerImage.renderer, "rect"):
                 layerImage.renderer.rect.topleft = (layerImage.x-self.cameraX, layerImage.renderer.rect.y)    

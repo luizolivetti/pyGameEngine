@@ -54,9 +54,9 @@ class entity:
     #
     # jump
     #
-    def jump(self, dy):
+    def jump(self):
         if self.physics:
-           self.physics.jump(0, dy)
+            self.physics.jump()
     #
     # up (pular)
     #
