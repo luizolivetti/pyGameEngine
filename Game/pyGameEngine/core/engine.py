@@ -5,6 +5,7 @@
 #  @author  Luiz Olivetti     @data 20/12/2024
 #  @revisor                   @data 
 #  ----------------------------------------------------------
+# import gc
 import pygame
 #
 # configurations
@@ -26,7 +27,8 @@ class engine(settings):
     firstState = None
     currentState = None
     previousState = None
-    countScenes = 0    
+    runningState = None
+    countScenes = 0   
     #
     # Initialization
     #
@@ -38,8 +40,9 @@ class engine(settings):
     #
     # addScene
     #
-    def addScene(self, state, background, inputContinuous=True, sceneSize=(0,0)):
-        self.scenes[state] = scene(background, inputContinuous, self.window, sceneSize)  
+    def addScene(self, sceneObject, background, inputContinuous=True, sceneSize=(0,0)):
+        so = sceneObject(background, inputContinuous, self.window, sceneSize)
+        self.scenes[so.state] = so  
         self.countScenes = len(self.scenes)           
     #
     # getScene
@@ -63,7 +66,10 @@ class engine(settings):
     #
     def setScene(self, state):
         if state in self.scenes:
-            self.previousState = self.currentState
+            if self.previousState is None:
+               self.previousState = self.scenes[state]
+            else:
+               self.previousState = self.currentState
             self.currentState = self.scenes[state]
         else:
             print(f"Cena não encontrada para o estado '{state}'.")
@@ -72,7 +78,9 @@ class engine(settings):
     # 
     def executeScene(self):  
         if self.currentState is not None:
-            self.window.background(self.currentState.background)
+            if self.runningState != self.currentState:
+                self.currentState.mount()
+                self.runningState = self.currentState
             self.currentState.update()
             self.currentState.render(self.window.getHandler())                  
     #
@@ -89,9 +97,12 @@ class engine(settings):
                         self.running = False
                 if self.currentState:
                     self.currentState.handleEvent(event)
-
+            # call for
+            if self.currentState.callFor is not None:
+                self.setScene(self.currentState.callFor)
+            # executeScene
             self.executeScene()
-
+            # update
             pygame.display.flip()
             self.window.timer.tick(settings.FPS)
 

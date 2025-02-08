@@ -5,7 +5,6 @@
 #  @author  Luiz Olivetti     @data 20/12/2024
 #  @revisor                   @data 
 #  ----------------------------------------------------------
-import pygame
 #
 # components
 #
@@ -26,7 +25,7 @@ class scene():
     # __init__
     #
     def __init__(self, backgroundColor, inputContinuous=True, window=None, sceneSize=(0,0)):
-        # 
+        # scene properties
         self.background = backgroundColor
         self.window = window
         self.media = media() 
@@ -40,6 +39,7 @@ class scene():
         self.cameraX = 0
         self.cameraY = 0
         self.position = (0,0)
+        self.callFor = None
         # scene size
         if sceneSize==(0,0) and window is not None:
             self.sceneSize = (window.handler.get_width(), window.handler.get_height())  
@@ -47,13 +47,23 @@ class scene():
             self.sceneSize = sceneSize    
         self.window.background(backgroundColor)
         # input controls on the scene
-        self.inputContinuous = inputContinuous   
+        self.inputContinuous = inputContinuous  
+    #
+    # execute
+    #
+    def execute(self, sceneState):
+        self.callFor = sceneState          
+    #
+    # mount
+    # 
+    def mount(self):
+        physics.instances.clear()  
     #
     # addLayer
     # Layers to compose the scene
     # Layers are type of entity, a image with position and size
     #
-    def addLayer(self, name, layer, addContext=False):
+    def addLayer(self, name, layer):
         self.layerImage[name] = layer        
         self.layerImageWidth[name] = layer.width
         self.layerImageHeight[name] = layer.height  
@@ -61,7 +71,7 @@ class scene():
     #
     # addLand
     #
-    def addLand(self, name, land, addContext=False):
+    def addLand(self, name, land):
         self.lands[name] = land        
         self.addEntity(land)          
     #
@@ -143,4 +153,4 @@ class scene():
         self.media.playSounds()    
         # render de entidades            
         for entity in self.entities:
-            entity.render(screen) 
+            entity.render(screen)         

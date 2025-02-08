@@ -41,6 +41,12 @@ class physics:
         self.currentCaller = None
         self.inGround = False # to-do : monitorar se está no chão
     #
+    # reset
+    #
+    @staticmethod
+    def reset():
+        physics.instances = []
+    #
     # whois
     #
     def whois(self):

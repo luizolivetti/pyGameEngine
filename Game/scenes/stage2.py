@@ -13,66 +13,48 @@ from pyGameEngine.core.scene import scene
 #
 # Extends
 #
-from pyGameEngine.core.extends.entity.label import label
 from pyGameEngine.core.extends.entity.layer import layer
 from pyGameEngine.core.extends.entity.player import player
 from pyGameEngine.core.extends.entity.land import land
 #
-# stage1
+# stages1
 #
-class stage1(scene):
+class stage2(scene):
     #
     # init
     #
     def __init__(self, backgroundColor, inputContinuous=True, window=None, sceneSize=(0,0)):
         super().__init__(backgroundColor, inputContinuous, window, sceneSize)
-        self.state = 'stage1'
+        self.state = 'stage2'
         self.player1 = None
     #
-    # stage1
+    # stage2
     #
     def mount(self):
         super().mount()
+        # Scene object with the layer background size 1500x600
         # backgroundImage added like layer
-        backgroundImage = layer(0,0,'Game/pyGameEngine/assets/images/backgrounds/kitchenp.jpg', 0)
+        backgroundImage = layer(0,0,'Game/pyGameEngine/assets/images/backgrounds/room1np.jpg', 0)
         self.addLayer('background',backgroundImage)
         # floor and platforms
-        land1 = land(0, 580, 1500, 25, (250, 183, 217, 0.8))
+        land1 = land(0, 580, 1500, 25, (0,0,0,0))
         land1.drawLine()
         land1.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0)
         self.addLand('floor', land1) # Chão
-        land2 = land(20, 380, 480, 15, (250, 183, 217, 0.8))
-        land2.drawLine()
-        land2.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0)
-        self.addLand('sink', land2) # Plataforma sólida
-        land3 = land(515, 270, 150, 10, (250, 183, 217, 0.8))
-        land3.drawLine()
-        land3.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0) 
-        self.addLand('shelf', land3) # Plataforma flutuante
-        land4 = land(680, 370, 400, 10, (250, 183, 217, 0.8))
-        land4.drawLine()
-        land4.setPhysics(0, 0, 0, (0,0), 0, 0, 0, 0)
-        self.addLand('sink2', land4) # Plataforma sólida
         # add player 1 at the scene and mount commands for player 1
         self.player1 = player(10, 600, 0, 0)
-        self.player1.setImage("Game/pyGameEngine/assets/images/player/1.png", 8, (250, 183, 217, 0.8))
+        self.player1.setImage("Game/pyGameEngine/assets/images/player/1.png", 8, (171, 183, 223, 0.8))
         self.player1.setPhysics(0, 0, 0.8, (0, 1), 5, 35, 0.1, 0.9)
         self.addPlayer('player1', self.player1)
         self.input.keyboard.addHandler(self.input.keyboard.SPACE, self.player1, 'jump')
-        # stage1.input.keyboard.addHandler(stage1.input.keyboard.UP,    self.Game, 'nextScene', param='stage2')
+        # stage2.input.keyboard.addHandler(stage2.input.keyboard.UP,    self.Game, 'nextScene', param='stage1')
         self.input.keyboard.addHandler(self.input.keyboard.DOWN,  self.player1, 'down')
         self.input.keyboard.addHandler(self.input.keyboard.LEFT,  self.player1, 'left')
         self.input.keyboard.addHandler(self.input.keyboard.RIGHT, self.player1, 'right')
         # registering controls on the scene
-        self.input.register(self.input.keyboard.getHandler())        
+        self.input.register(self.input.keyboard.getHandler())       
     #
     # execute
     #
     def update(self):
-        super().update()
-        #
-        if self.player1 is not None:
-            print('input x ' + str(self.player1.x) + ' input y ' + str(self.player1.y))
-            if self.player1.x >= 738:
-                self.execute('stage2')
-
+        super().update()      

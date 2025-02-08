@@ -39,6 +39,15 @@ class image(renderer):
         self.rect = self.image.get_rect()
         self.rect.topleft = (self.x, self.y)
     #
+    #  colorize
+    # 
+    def colorize(self, color):
+        colouredImage = pygame.Surface(self.image.get_size())
+        colouredImage.fill(color)
+        finalImage = self.image.copy()
+        finalImage.blit(colouredImage, (0, 0), special_flags = pygame.BLEND_RGBA_MULT)
+        self.image = finalImage        
+    #
     # rendering
     #
     def render(self, screen):

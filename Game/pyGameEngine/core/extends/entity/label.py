@@ -32,7 +32,7 @@ class label(entity):
     # update
     #      
     def update(self):
-        pass   
+        super().update()   
     #
     # render
     #    
