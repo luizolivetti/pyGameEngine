@@ -99,7 +99,7 @@ class engine(settings):
                     self.currentState.handleEvent(event)
             # call for
             if self.currentState.callFor is not None:
-                self.setScene(self.currentState.callFor)
+                self.nextScene(self.currentState.callFor)
             # executeScene
             self.executeScene()
             # update

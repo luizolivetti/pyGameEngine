@@ -47,7 +47,7 @@ class stage2(scene):
         self.player1.setPhysics(0, 0, 0.8, (0, 1), 5, 35, 0.1, 0.9)
         self.addPlayer('player1', self.player1)
         self.input.keyboard.addHandler(self.input.keyboard.SPACE, self.player1, 'jump')
-        # stage2.input.keyboard.addHandler(stage2.input.keyboard.UP,    self.Game, 'nextScene', param='stage1')
+        self.input.keyboard.addHandler(self.input.keyboard.UP,    self, 'action')
         self.input.keyboard.addHandler(self.input.keyboard.DOWN,  self.player1, 'down')
         self.input.keyboard.addHandler(self.input.keyboard.LEFT,  self.player1, 'left')
         self.input.keyboard.addHandler(self.input.keyboard.RIGHT, self.player1, 'right')
@@ -58,3 +58,10 @@ class stage2(scene):
     #
     def update(self):
         super().update()      
+    #
+    # action
+    #
+    def action(self):
+        if self.player1 is not None:
+            if self.player1.x <= 0:
+                self.execute('stage1')        
